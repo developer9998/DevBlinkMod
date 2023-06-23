@@ -2,7 +2,7 @@
 using System;
 using System.Reflection;
 
-namespace DevBlinkMod.HarmonyPatches
+namespace DevBlinkMod
 {
     /// <summary>
     /// This class handles applying harmony patches to the game.

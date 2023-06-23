@@ -12,21 +12,24 @@ namespace DevBlinkMod
         public static Plugin Instance { get; private set; }
         public Texture2D faceSheet;
 
-        internal void Awake()
+        internal async void Awake()
         {
             Instance = this;
             BlinkLogger.LogMessage("DevBlinkMod awoken", BlinkLogger.LogType.Default);
 
-            HarmonyPatches.HarmonyPatches.ApplyHarmonyPatches();
+            HarmonyPatches.ApplyHarmonyPatches();
             BlinkLogger.LogMessage("Applied harmony patches", BlinkLogger.LogType.Default);
-
-            faceSheet = new Texture2D(512, 130, TextureFormat.RGBA32, false) { filterMode = FilterMode.Point };
 
             Stream manifestResourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"DevBlinkMod.Resources.blinksheet.png");
             byte[] bytes = new byte[manifestResourceStream.Length];
-            manifestResourceStream.Read(bytes, 0, bytes.Length);
+            await manifestResourceStream.ReadAsync(bytes, 0, bytes.Length);
 
-            faceSheet.name = "gorillachestface";
+            faceSheet = new Texture2D(384, 130, TextureFormat.RGB24, false)
+            {
+                wrapMode = TextureWrapMode.Clamp,
+                filterMode = FilterMode.Point,
+                name = "gorillachestface"
+            };
             faceSheet.LoadImage(bytes);
             faceSheet.Apply();
             BlinkLogger.LogMessage("Generated face texture", BlinkLogger.LogType.Default);

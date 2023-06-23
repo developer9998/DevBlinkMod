@@ -13,86 +13,73 @@ namespace DevBlinkMod.Scripts
         internal Vector2 mainTextureOffset;
 
         internal float blinkTime;
-        internal float blinkCooldown = 0.075f;
+        internal float blinkDelay
+        {
+            get 
+                => Time.time + Random.Range(2f, 7.5f);
+        }
+        internal const float blinkCooldownClosed = 0.22f;
+        internal const float blinkCooldown = 0.10f;
 
-        public BlinkState blink = BlinkState.Neutral;
-
+        public BlinkState currentBlinkState = BlinkState.Idle;
+        internal BlinkState lastBlinkState = BlinkState.Idle;
         public enum BlinkState
         {
-            Neutral,
-            BeginStart,
-            MiddleStart,
-            EndStart,
-            MiddleEnd,
-            BeginEnd
+            Idle,
+            IdleHalf,
+            BlinkClosed,
+            BlinkHalf
         }
 
-        internal float SetRandomBlinkTime() { return Time.time + Random.Range(0.5f, 6.5f); }
-
-        public void Start()
+        public void OnEnable()
         {
-            if (gameObject.GetComponent<VRRig>() == null) Destroy(this);
             rig = gameObject.GetComponent<VRRig>();
 
             faceRenderer = rig.headMesh.transform.Find("gorillaface").GetComponent<Renderer>();
             faceRenderer.material.mainTexture = Plugin.Instance.faceSheet;
-            faceRenderer.material.mainTextureScale = new Vector2(0.25f, 1f);
+            faceRenderer.material.mainTextureScale = new Vector2(1f / 3f, 1f);
             faceRenderer.material.mainTextureOffset = Vector2.zero;
-
-            blinkTime = SetRandomBlinkTime();
+            blinkTime = blinkDelay;
         }
 
         internal void LateUpdate()
         {
             if (rig == null || faceRenderer == null)
-            {
                 return;
-            }
-
-            if (rig.isOfflineVRRig)
-            {
-                faceRenderer.forceRenderingOff = PhotonNetwork.InRoom;
-            }
 
             if (Time.time >= blinkTime)
             {
-                switch (blink)
+                switch (currentBlinkState)
                 {
-                    case BlinkState.Neutral:
-                        blink = BlinkState.BeginStart;
-                        offsetX = 0.25f;
+                    case BlinkState.Idle:
+                        currentBlinkState = BlinkState.IdleHalf;
+                        offsetX = 1f / 3f;
+                        blinkTime = Time.time + blinkCooldown * 0.7f;
+                        break;
+                    case BlinkState.IdleHalf:
+                        currentBlinkState = BlinkState.BlinkClosed;
+                        offsetX = 1f / 3f * 2;
+                        blinkTime = Time.time + blinkCooldownClosed;
+                        break;
+                    case BlinkState.BlinkClosed:
+                        currentBlinkState = BlinkState.BlinkHalf;
+                        offsetX = 1f / 3f;
                         blinkTime = Time.time + blinkCooldown;
                         break;
-                    case BlinkState.BeginStart:
-                        blink = BlinkState.MiddleStart;
-                        offsetX = 0.5f;
-                        blinkTime = Time.time + blinkCooldown;
-                        break;
-                    case BlinkState.MiddleStart:
-                        blink = BlinkState.EndStart;
-                        offsetX = 0.75f;
-                        blinkTime = Time.time + blinkCooldown;
-                        break;
-                    case BlinkState.EndStart:
-                        blink = BlinkState.MiddleEnd;
-                        offsetX = 0.5f;
-                        blinkTime = Time.time + blinkCooldown;
-                        break;
-                    case BlinkState.MiddleEnd:
-                        blink = BlinkState.BeginEnd;
-                        offsetX = 0.25f;
-                        blinkTime = Time.time + blinkCooldown;
-                        break;
-                    case BlinkState.BeginEnd:
-                        blink = BlinkState.Neutral;
+                    case BlinkState.BlinkHalf:
+                        currentBlinkState = BlinkState.Idle;
                         offsetX = 0f;
-                        blinkTime = SetRandomBlinkTime();
+                        blinkTime = blinkDelay;
                         break;
                 }
             }
 
-            mainTextureOffset = new Vector2(offsetX, offsetY);
-            faceRenderer.material.mainTextureOffset = mainTextureOffset;
+            if (lastBlinkState != currentBlinkState)
+            {
+                lastBlinkState = currentBlinkState;
+                mainTextureOffset = new Vector2(offsetX, offsetY);
+                faceRenderer.material.mainTextureOffset = mainTextureOffset;
+            }
         }
     }
 }

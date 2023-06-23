@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.3.32819.101
+VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevBlinkMod", "DevBlinkMod\DevBlinkMod.csproj", "{104903AC-5B5D-4D55-8DEC-3A0D336412C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevBlinkMod", "DevBlinkMod.csproj", "{48971C66-E116-497B-A771-17635D6C3D92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{104903AC-5B5D-4D55-8DEC-3A0D336412C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{104903AC-5B5D-4D55-8DEC-3A0D336412C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{104903AC-5B5D-4D55-8DEC-3A0D336412C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{104903AC-5B5D-4D55-8DEC-3A0D336412C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48971C66-E116-497B-A771-17635D6C3D92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48971C66-E116-497B-A771-17635D6C3D92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48971C66-E116-497B-A771-17635D6C3D92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48971C66-E116-497B-A771-17635D6C3D92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {85C303D8-8C66-4A3A-8106-FFE476CBD5C2}
+		SolutionGuid = {0EDB012D-09B3-45D8-9E64-A37EED3F26F0}
 	EndGlobalSection
 EndGlobal
