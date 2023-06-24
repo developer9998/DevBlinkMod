@@ -7,6 +7,6 @@
     {
         public const string GUID = "com.dev9998.gorillatag.devblinkmod";
         public const string Name = "DevBlinkMod";
-        public const string Version = "1.0.0";
+        public const string Version = "1.1.0";
     }
 }
