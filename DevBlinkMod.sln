@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevBlinkMod", "DevBlinkMod.csproj", "{48971C66-E116-497B-A771-17635D6C3D92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevBlinkMod", "DevBlinkMod\DevBlinkMod.csproj", "{2420A30A-5F3C-4413-9468-C6D697A32D1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{48971C66-E116-497B-A771-17635D6C3D92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48971C66-E116-497B-A771-17635D6C3D92}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{48971C66-E116-497B-A771-17635D6C3D92}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{48971C66-E116-497B-A771-17635D6C3D92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2420A30A-5F3C-4413-9468-C6D697A32D1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2420A30A-5F3C-4413-9468-C6D697A32D1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2420A30A-5F3C-4413-9468-C6D697A32D1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2420A30A-5F3C-4413-9468-C6D697A32D1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0EDB012D-09B3-45D8-9E64-A37EED3F26F0}
+		SolutionGuid = {9687387A-B70A-4771-A021-89A0293E4B8F}
 	EndGlobalSection
 EndGlobal
