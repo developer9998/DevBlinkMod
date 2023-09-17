@@ -24,11 +24,11 @@ namespace DevBlinkMod
             byte[] bytes = new byte[manifestResourceStream.Length];
             await manifestResourceStream.ReadAsync(bytes, 0, bytes.Length);
 
-            faceSheet = new Texture2D(384, 130, TextureFormat.RGB24, false)
+            faceSheet = new Texture2D(192, 65, TextureFormat.RGB24, false)
             {
-                wrapMode = TextureWrapMode.Clamp,
+                wrapMode = TextureWrapMode.Repeat,
                 filterMode = FilterMode.Point,
-                name = "gorillachestface"
+                name = "Blink Sheet"
             };
             faceSheet.LoadImage(bytes);
             faceSheet.Apply();

@@ -11,27 +11,18 @@ namespace DevBlinkMod.Scripts
             Warning = 1,
             Error = 2
         }
-
-        public static void LogMessage(string message, LogType type)
+        
+        public static void LogMessage(object message, LogType type)
         {
-            string outputMessage = "No message to output.";
-            LogType outputType = LogType.Error;
-
-            if (!message.IsNullOrEmpty()) outputMessage = message;
-            if (!type.ToString().IsNullOrEmpty()) outputType = type;
-
-            switch (outputType)
+            UnityEngine.LogType logType = type switch
             {
-                case LogType.Warning:
-                    UnityEngine.Debug.LogWarning(string.Format("[{0}, {1}] {2}", PluginInfo.Name, DateTime.Now, outputMessage));
-                    break;
-                case LogType.Error:
-                    UnityEngine.Debug.LogError(string.Format("[{0}, {1}] {2}", PluginInfo.Name, DateTime.Now, outputMessage));
-                    break;
-                default:
-                    UnityEngine.Debug.Log(string.Format("[{0}, {1}] {2}", PluginInfo.Name, DateTime.Now, outputMessage));
-                    break;
-            }
+                LogType.Default => UnityEngine.LogType.Log,
+                LogType.Warning => UnityEngine.LogType.Warning,
+                LogType.Error => UnityEngine.LogType.Error,
+                _ => throw new IndexOutOfRangeException()
+            };
+
+            UnityEngine.Debug.unityLogger.Log(logType, string.Format("[{0}, {1}] {2}", PluginInfo.Name, DateTime.Now, message));
         }
     }
 }
