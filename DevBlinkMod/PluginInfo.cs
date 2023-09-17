@@ -5,8 +5,8 @@
     /// </summary>
     internal class PluginInfo
     {
-        public const string GUID = "com.dev9998.gorillatag.devblinkmod";
+        public const string GUID = "dev.blinkmod23";
         public const string Name = "DevBlinkMod";
-        public const string Version = "1.1.0";
+        public const string Version = "1.1.1";
     }
 }
