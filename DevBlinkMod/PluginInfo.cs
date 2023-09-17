@@ -7,6 +7,6 @@
     {
         public const string GUID = "dev.blinkmod23";
         public const string Name = "DevBlinkMod";
-        public const string Version = "1.1.1";
+        public const string Version = "1.1.2";
     }
 }
